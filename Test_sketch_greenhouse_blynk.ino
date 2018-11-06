@@ -10,7 +10,7 @@
 #include <Servo.h>
 
 // Blynk auth token
-char auth[] = "af690efbe2a3460290e42cd5ef9873ae";
+char auth[] = "16ddcb1557d1417690fed1559ffc96b4";
 IPAddress blynk_ip(139, 59, 206, 133);
 
 // Датчик DS18B20
@@ -122,7 +122,7 @@ void readSendData() {
 }
 
 // Управление помпой с Blynk
-BLYNK_WRITE(V7)
+BLYNK_WRITE(V100)
 {
   int pump_ctl = param.asInt();   // Получение управляющего сигнала с сервера
   Serial.print("Pump power: ");
@@ -131,16 +131,16 @@ BLYNK_WRITE(V7)
 }
 
 // Управление светом с Blynk
-BLYNK_WRITE(V8)
+BLYNK_WRITE(V102)
 {
   int light_ctl = param.asInt();   // Получение управляющего сигнала с сервера
   Serial.print("Light power: ");
   Serial.println(light_ctl);
-  analogWrite(LIGHT_SENSOR, light_ctl);   // Управление MOS транзистором
+  analogWrite(PWM_LED, light_ctl);   // Управление MOS транзистором
 }
 
 // Управление сервомотором с Blynk
-BLYNK_WRITE(V9)
+BLYNK_WRITE(V101)
 {
   int servo_ctl = param.asInt();   // Получение управляющего сигнала с сервера
   Serial.print("Servo motor angle: ");
